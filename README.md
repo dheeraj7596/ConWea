@@ -36,15 +36,25 @@ To contextualize the corpus, please run:
 ```sh
 $ python contextualize.py --dataset_path dataset_path --temp_dir temp_dir_path
 ```
+
+The ```tests/test_contextualize.py``` is a unittest to check the sanity of contextualization. To run this unittest, please execute:
+```shell script
+$ python -m unittest tests/test_contextualize.py
+``` 
  
 #### ConWea - Iterative Framework:
 The ```train.py``` requires two arguments: ```dataset_path```, which is a path to dataset containing 
 required contextualized corpus DataFrame dumped by ```contextualize.py```, seed words and ```num_iter``` is the
 number of iterations for the iterative framework.
 To train ConWea, please run:
-```sh
+```shell script
 $ python train.py --dataset_path dataset_path --num_iter 5
 ```
+
+The ```tests/test_conwea.py``` is a unittest to check the sanity of framework. To run this unittest, please execute:
+```shell script
+$ python -m unittest tests/test_conwea.py
+``` 
 
 
 ### Requirements
