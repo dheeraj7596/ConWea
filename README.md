@@ -22,7 +22,7 @@ Each Dataset should contain following files:
     - Must be named as ```df.pkl```
 - **Seed Words Json file**
   - Example: ```data/nyt/seedwords.json```
-    - This json file contains seedwords list for each label.
+    - This json file contains seed words list for each label.
     - Must be named as ```seedwords.json```
 
 ### Commands
@@ -38,8 +38,8 @@ $ python contextualize.py --dataset_path dataset_path --temp_dir temp_dir_path
 ```
  
 #### ConWea - Iterative Framework:
-The ```train.py``` requires two arguments: dataset_path, which is a path to dataset containing 
-required contextualized corpus DataFrame dumped by ```contextualize.py```, seedwords and ```num_iter``` is the
+The ```train.py``` requires two arguments: ```dataset_path```, which is a path to dataset containing 
+required contextualized corpus DataFrame dumped by ```contextualize.py```, seed words and ```num_iter``` is the
 number of iterations for the iterative framework.
 To train ConWea, please run:
 ```sh

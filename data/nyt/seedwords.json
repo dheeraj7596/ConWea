@@ -1,0 +1,108 @@
+{
+  "federal_budget": [
+    "cuts",
+    "budget",
+    "debt"
+  ],
+  "gun_control": [
+    "guns",
+    "weapons",
+    "firearms"
+  ],
+  "law_enforcement": [
+    "death",
+    "judge",
+    "prosecutors"
+  ],
+  "gay_rights": [
+    "gay",
+    "marriage",
+    "same-sex"
+  ],
+  "energy_companies": [
+    "energy",
+    "oil",
+    "gas"
+  ],
+  "environment": [
+    "climate",
+    "fish",
+    "wildlife"
+  ],
+  "immigration": [
+    "immigration",
+    "immigrants",
+    "citizenship"
+  ],
+  "military": [
+    "military",
+    "pentagon",
+    "army"
+  ],
+  "cosmos": [
+    "spacecraft",
+    "sun",
+    "kepler"
+  ],
+  "the_affordable_care_act": [
+    "medicaid",
+    "coverage",
+    "insurance"
+  ],
+  "stocks_and_bonds": [
+    "earnings",
+    "stocks",
+    "investors"
+  ],
+  "international_business": [
+    "bank",
+    "european",
+    "china"
+  ],
+  "abortion": [
+    "abortion"
+  ],
+  "music": [
+    "music"
+  ],
+  "baseball": [
+    "baseball"
+  ],
+  "economy": [
+    "economy"
+  ],
+  "television": [
+    "episode",
+    "episodes",
+    "viewers"
+  ],
+  "golf": [
+    "golf"
+  ],
+  "tennis": [
+    "tennis"
+  ],
+  "hockey": [
+    "hockey"
+  ],
+  "football": [
+    "football"
+  ],
+  "dance": [
+    "dance"
+  ],
+  "movies": [
+    "movies"
+  ],
+  "soccer": [
+    "soccer"
+  ],
+  "surveillance": [
+    "surveillance",
+    "intelligence",
+    "snowden"
+  ],
+  "basketball": [
+    "basketball"
+  ]
+}
