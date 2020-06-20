@@ -169,8 +169,8 @@ def main(dataset_path, temp_dir):
                         cluster = get_cluster(tok_vec, cc)
                         sentence.tokens[token_ind].text = word + "$" + str(cluster)
                 sentences[sentence_ind] = to_tokenized_string(sentence)
-            df["sentence"][index] = ". ".join(sentences)
-        return df
+            df["sentence"][index] = " . ".join(sentences)
+        return df, word_cluster
 
     pkl_dump_dir = dataset_path
     bert_dump_dir = temp_dir + "bert/"
@@ -181,8 +181,9 @@ def main(dataset_path, temp_dir):
     dump_bert_vecs(df, bert_dump_dir)
     tau = compute_tau(label_seedwords_dict, bert_dump_dir)
     cluster_words(tau, bert_dump_dir, cluster_dump_dir)
-    df_contextualized = contextualize(df, cluster_dump_dir)
+    df_contextualized, word_cluster_map = contextualize(df, cluster_dump_dir)
     pickle.dump(df_contextualized, open(pkl_dump_dir + "df_contextualized.pkl", "wb"))
+    pickle.dump(word_cluster_map, open(pkl_dump_dir + "word_cluster_map.pkl", "wb"))
 
 
 if __name__ == "__main__":
