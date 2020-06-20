@@ -51,7 +51,6 @@ $ python train.py --dataset_path dataset_path --num_iter 5
 
 This project is based on ```python==3.7```. The dependencies are as follow:
 ```
-pytorch==1.3.1
 keras-contrib==2.0.8
 scikit-learn==0.21.3
 flair==0.4.4
