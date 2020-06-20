@@ -9,7 +9,6 @@ from flair.embeddings import BertEmbeddings
 from nltk import sent_tokenize
 from nltk.corpus import stopwords
 from util import *
-import shutil
 
 
 def main(dataset_path, temp_dir):
@@ -185,7 +184,6 @@ def main(dataset_path, temp_dir):
     df_contextualized, word_cluster_map = contextualize(df, cluster_dump_dir)
     pickle.dump(df_contextualized, open(pkl_dump_dir + "df_contextualized.pkl", "wb"))
     pickle.dump(word_cluster_map, open(pkl_dump_dir + "word_cluster_map.pkl", "wb"))
-    shutil.rmtree(temp_dir)
 
 
 if __name__ == "__main__":
