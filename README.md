@@ -29,12 +29,13 @@ Each Dataset should contain following files:
 
 
 #### Corpus Contextualization: 
-The ```contextualize.py``` requires two arguments: ```dataset_path```, which is a path to dataset containing 
-required DataFrame, seedwords and ```temp_dir``` is a path to a temporary
-directory which is used for dumping intermediate files during contextualizing the corpus.
+The ```contextualize.py``` requires three arguments: ```dataset_path```, which is a path to dataset containing 
+required DataFrame and seedwords, ```temp_dir``` is a path to a temporary
+directory which is used for dumping intermediate files during contextualizing the corpus, and ```gpu_id``` refers to the 
+id of the gpu. If not mentioned, the process runs on cpu.
 To contextualize the corpus, please run:
-```sh
-$ python contextualize.py --dataset_path dataset_path --temp_dir temp_dir_path
+```shell script
+$ python contextualize.py --dataset_path dataset_path --temp_dir temp_dir_path --gpu_id 3
 ```
 
 The ```tests/test_contextualize.py``` is a unittest to check the sanity of contextualization. To run this unittest, please execute:
@@ -43,12 +44,13 @@ $ python -m unittest tests/test_contextualize.py
 ``` 
  
 #### ConWea - Iterative Framework:
-The ```train.py``` requires two arguments: ```dataset_path```, which is a path to dataset containing 
-required contextualized corpus DataFrame dumped by ```contextualize.py```, seed words and ```num_iter``` is the
-number of iterations for the iterative framework.
+The ```train.py``` requires three arguments: ```dataset_path```, which is a path to dataset containing 
+required contextualized corpus DataFrame dumped by ```contextualize.py``` and seed words, ```num_iter``` is the
+number of iterations for the iterative framework, and ```gpu_id``` refers to the  id of the gpu. If not mentioned, 
+the process runs on cpu.
 To train ConWea, please run:
 ```shell script
-$ python train.py --dataset_path dataset_path --num_iter 5
+$ python train.py --dataset_path dataset_path --num_iter 5 --gpu_id 3
 ```
 
 The ```tests/test_conwea.py``` is a unittest to check the sanity of framework. To run this unittest, please execute:
