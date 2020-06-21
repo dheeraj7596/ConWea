@@ -9,6 +9,7 @@ from flair.embeddings import BertEmbeddings
 from nltk import sent_tokenize
 from nltk.corpus import stopwords
 from util import *
+import os
 
 
 def main(dataset_path, temp_dir):
@@ -190,5 +191,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset_path', type=str, default='./data/nyt/')
     parser.add_argument('--temp_dir', type=str, default='/tmp/')
+    parser.add_argument('--gpu_id', type=str, default="cpu")
     args = parser.parse_args()
+    if args.gpu_id != "cpu":
+        os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu_id)
     main(dataset_path=args.dataset_path, temp_dir=args.temp_dir)

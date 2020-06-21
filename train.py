@@ -12,6 +12,7 @@ from collections import defaultdict
 from gensim.models import word2vec
 from keras_han.model import HAN
 from nltk.corpus import stopwords
+import os
 
 
 def main(dataset_path, num_iter, print_flag=False):
@@ -308,6 +309,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset_path', type=str, default='./data/nyt/')
     parser.add_argument('--num_iter', type=str, default=5)
-
+    parser.add_argument('--gpu_id', type=str, default="cpu")
     args = parser.parse_args()
+    if args.gpu_id != "cpu":
+        os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu_id)
     main(dataset_path=args.dataset_path, num_iter=args.num_iter)
