@@ -1,6 +1,7 @@
 import argparse
 import json
 import numpy as np
+import flair, torch
 from collections import defaultdict
 from statistics import median
 from sklearn.cluster import KMeans
@@ -9,7 +10,6 @@ from flair.embeddings import BertEmbeddings
 from nltk import sent_tokenize
 from nltk.corpus import stopwords
 from util import *
-import os
 
 
 def main(dataset_path, temp_dir):
@@ -194,5 +194,5 @@ if __name__ == "__main__":
     parser.add_argument('--gpu_id', type=str, default="cpu")
     args = parser.parse_args()
     if args.gpu_id != "cpu":
-        os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu_id)
+        flair.device = torch.device('cuda:' + str(args.gpu_id))
     main(dataset_path=args.dataset_path, temp_dir=args.temp_dir)
