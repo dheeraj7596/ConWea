@@ -14,6 +14,7 @@ from util import *
 
 def main(dataset_path, temp_dir):
     def dump_bert_vecs(df, dump_dir):
+        print("Getting BERT vectors...")
         embedding = BertEmbeddings('bert-base-uncased')
         word_counter = defaultdict(int)
         stop_words = set(stopwords.words('english'))
@@ -51,6 +52,7 @@ def main(dataset_path, temp_dir):
                         print("Exception Counter while dumping BERT: ", except_counter, sentence_ind, index, word, e)
 
     def compute_tau(label_seedwords_dict, bert_dump_dir):
+        print("Computing Similarity Threshold..")
         seedword_medians = []
         for l in label_seedwords_dict:
             seed_words = label_seedwords_dict[l]
@@ -94,6 +96,7 @@ def main(dataset_path, temp_dir):
         return cc
 
     def cluster_words(tau, bert_dump_dir, cluster_dump_dir):
+        print("Clustering words..")
         dir_set = get_relevant_dirs(bert_dump_dir)
         except_counter = 0
         print("Length of DIR_SET: ", len(dir_set))
@@ -122,6 +125,7 @@ def main(dataset_path, temp_dir):
                     max_sim_id = i
             return max_sim_id
 
+        print("Contextualizing the corpus..")
         embedding = BertEmbeddings('bert-base-uncased')
         stop_words = set(stopwords.words('english'))
         stop_words.add('would')
@@ -181,6 +185,7 @@ def main(dataset_path, temp_dir):
         label_seedwords_dict = json.load(fp)
     dump_bert_vecs(df, bert_dump_dir)
     tau = compute_tau(label_seedwords_dict, bert_dump_dir)
+    print("Cluster Similarity Threshold: ", tau)
     cluster_words(tau, bert_dump_dir, cluster_dump_dir)
     df_contextualized, word_cluster_map = contextualize(df, cluster_dump_dir)
     pickle.dump(df_contextualized, open(pkl_dump_dir + "df_contextualized.pkl", "wb"))
