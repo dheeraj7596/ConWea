@@ -248,7 +248,7 @@ def main(dataset_path, num_iter, print_flag=True):
                 if not np.any(E_LT):
                     n = 0
                 else:
-                    n = min(n1 * (it + 1), int(math.log(len(label_docs_dict[index_to_label[l]]), 1.5)))
+                    n = min(n1 * (it), int(math.log(len(label_docs_dict[index_to_label[l]]), 1.5)))
                 inds_popular = E_LT[l].argsort()[::-1][:n]
                 for word_ind in inds_popular:
                     word = index_to_word[word_ind]
