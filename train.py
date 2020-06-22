@@ -242,28 +242,33 @@ def main(dataset_path, num_iter, print_flag=True):
                 new_dic[l] = disambiguated_seed_list
             return new_dic
 
-        def expand(E_LT, index_to_label, index_to_word, it, label_count, n1, label_docs_dict):
+        def expand(E_LT, index_to_label, index_to_word, it, label_count, n1, old_label_term_dict, label_docs_dict):
             word_map = {}
+            zero_docs_labels = set()
             for l in range(label_count):
                 if not np.any(E_LT):
-                    n = 0
+                    continue
+                elif len(label_docs_dict[index_to_label[l]]) == 0:
+                    zero_docs_labels.add(l)
                 else:
                     n = min(n1 * (it), int(math.log(len(label_docs_dict[index_to_label[l]]), 1.5)))
-                inds_popular = E_LT[l].argsort()[::-1][:n]
-                for word_ind in inds_popular:
-                    word = index_to_word[word_ind]
-                    try:
-                        temp = word_map[word]
-                        if E_LT[l][word_ind] > temp[1]:
+                    inds_popular = E_LT[l].argsort()[::-1][:n]
+                    for word_ind in inds_popular:
+                        word = index_to_word[word_ind]
+                        try:
+                            temp = word_map[word]
+                            if E_LT[l][word_ind] > temp[1]:
+                                word_map[word] = (index_to_label[l], E_LT[l][word_ind])
+                        except:
                             word_map[word] = (index_to_label[l], E_LT[l][word_ind])
-                    except:
-                        word_map[word] = (index_to_label[l], E_LT[l][word_ind])
 
-            label_term_dict = defaultdict(set)
+            new_label_term_dict = defaultdict(set)
             for word in word_map:
                 label, val = word_map[word]
-                label_term_dict[label].add(word)
-            return label_term_dict
+                new_label_term_dict[label].add(word)
+            for l in zero_docs_labels:
+                new_label_term_dict[l] = old_label_term_dict[l]
+            return new_label_term_dict
 
         label_count = len(label_to_index)
         term_count = len(word_to_index)
@@ -277,7 +282,8 @@ def main(dataset_path, num_iter, print_flag=True):
             label_term_dict = disambiguate(label_term_dict, components)
         else:
             print("Expanding seeds..")
-            label_term_dict = expand(E_LT, index_to_label, index_to_word, it, label_count, n1, label_docs_dict)
+            label_term_dict = expand(E_LT, index_to_label, index_to_word, it, label_count, n1, label_term_dict,
+                                     label_docs_dict)
         return label_term_dict, components
 
     pkl_dump_dir = dataset_path
@@ -302,7 +308,7 @@ def main(dataset_path, num_iter, print_flag=True):
         print("ITERATION: ", i)
         pred_labels = train_classifier(df, labels, label_term_dict, label_to_index, index_to_label, dataset_path)
         label_term_dict, components = expand_seeds(df, label_term_dict, pred_labels, label_to_index, index_to_label,
-                                                   word_to_index, index_to_word, inv_docfreq, docfreq, i, n1=7)
+                                                   word_to_index, index_to_word, inv_docfreq, docfreq, i, n1=5)
         if print_flag:
             print_label_term_dict(label_term_dict, components)
         print("#" * 80)
