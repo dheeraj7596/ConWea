@@ -15,7 +15,7 @@ from nltk.corpus import stopwords
 import os
 
 
-def main(dataset_path, num_iter, print_flag=False):
+def main(dataset_path, num_iter, print_flag=True):
     def train_word2vec(df, dataset_path):
         def get_embeddings(inp_data, vocabulary_inv, size_features=100,
                            mode='skipgram',
@@ -49,6 +49,7 @@ def main(dataset_path, num_iter, print_flag=False):
             return embedding_weights
 
         tokenizer = fit_get_tokenizer(df.sentence, max_words=150000)
+        print("Total number of words: ", len(tokenizer.word_index))
         tagged_data = tokenizer.texts_to_sequences(df.sentence)
         vocabulary_inv = {}
         for word in tokenizer.word_index:
