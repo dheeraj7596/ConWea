@@ -58,6 +58,7 @@ def main(dataset_path, num_iter, print_flag=False):
         pickle.dump(embedding_mat, open(dataset_path + "embedding_matrix.pkl", "wb"))
 
     def preprocess(df, word_cluster):
+        print("Preprocessing data..")
         stop_words = set(stopwords.words('english'))
         stop_words.add('would')
         word_vec = {}
@@ -135,6 +136,7 @@ def main(dataset_path, num_iter, print_flag=False):
         return X, y, y_true
 
     def train_classifier(df, labels, label_term_dict, label_to_index, index_to_label, dataset_path):
+        print("Going to train classifier..")
         basepath = dataset_path
         model_name = "conwea"
         dump_dir = basepath + "models/" + model_name + "/"
@@ -284,6 +286,7 @@ def main(dataset_path, num_iter, print_flag=False):
         label_term_dict = json.load(fp)
 
     label_term_dict = add_all_interpretations(label_term_dict, word_cluster)
+    print_label_term_dict(label_term_dict, None, print_components=False)
     labels = list(set(label_term_dict.keys()))
     label_to_index, index_to_label = create_label_index_maps(labels)
     df, word_vec = preprocess(df, word_cluster)
@@ -296,7 +299,6 @@ def main(dataset_path, num_iter, print_flag=False):
     train_word2vec(df, dataset_path)
     for i in range(num_iter + 1):
         print("ITERATION: ", i)
-        print("Going to train classifier..")
         pred_labels = train_classifier(df, labels, label_term_dict, label_to_index, index_to_label, dataset_path)
         label_term_dict, components = expand_seeds(df, label_term_dict, pred_labels, label_to_index, index_to_label,
                                                    word_to_index, index_to_word, inv_docfreq, docfreq, i, n1=7)
@@ -313,4 +315,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     if args.gpu_id != "cpu":
         os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu_id)
-    main(dataset_path=args.dataset_path, num_iter=args.num_iter)
+    main(dataset_path=args.dataset_path, num_iter=int(args.num_iter))

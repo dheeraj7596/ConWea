@@ -232,6 +232,7 @@ def get_label_docs_dict(df, label_term_dict, pred_labels):
 
 
 def add_all_interpretations(label_term_dict, word_cluster):
+    print("Considering all interpretations of seed words..")
     new_dic = {}
     for l in label_term_dict:
         for word in label_term_dict[l]:
@@ -256,13 +257,16 @@ def add_all_interpretations(label_term_dict, word_cluster):
     return new_dic
 
 
-def print_label_term_dict(label_term_dict, components):
+def print_label_term_dict(label_term_dict, components, print_components=True):
     for label in label_term_dict:
         print(label)
         print("*" * 80)
         for val in label_term_dict[label]:
             try:
-                print(val, components[label][val])
+                if print_components:
+                    print(val, components[label][val])
+                else:
+                    print(val)
             except Exception as e:
                 print("Exception occurred: ", e, val)
 
