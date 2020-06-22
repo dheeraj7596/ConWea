@@ -27,7 +27,8 @@
   "environment": [
     "climate",
     "fish",
-    "wildlife"
+    "wildlife",
+    "carbon"
   ],
   "immigration": [
     "immigration",
@@ -37,7 +38,8 @@
   "military": [
     "military",
     "pentagon",
-    "army"
+    "army",
+    "marine"
   ],
   "cosmos": [
     "spacecraft",
