@@ -249,7 +249,7 @@ def main(dataset_path, num_iter, print_flag=True):
                 if not np.any(E_LT):
                     continue
                 elif len(label_docs_dict[index_to_label[l]]) == 0:
-                    zero_docs_labels.add(l)
+                    zero_docs_labels.add(index_to_label[l])
                 else:
                     n = min(n1 * (it), int(math.log(len(label_docs_dict[index_to_label[l]]), 1.5)))
                     inds_popular = E_LT[l].argsort()[::-1][:n]
