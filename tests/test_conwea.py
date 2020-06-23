@@ -11,7 +11,6 @@ import mock
 class TestConWea(unittest.TestCase):
     def setUp(self):
         # Create a temporary directory
-        self.num_iter = 3
         self.temp_dir = tempfile.mkdtemp()
         self.dataset_dir = tempfile.mkdtemp()
 
@@ -132,7 +131,7 @@ class TestConWea(unittest.TestCase):
         seedwords = {"soccer": ["penalty"], "law": ["judge"]}
         json.dump(seedwords, open(self.dataset_dir + "/seedwords.json", "w"))
         contextualize.main(dataset_path=self.dataset_dir + "/", temp_dir=self.temp_dir + "/")
-        train.main(dataset_path=self.dataset_dir + "/", num_iter=self.num_iter, print_flag=True)
+        train.main(dataset_path=self.dataset_dir + "/", print_flag=True)
 
         self.assertTrue(True)
 

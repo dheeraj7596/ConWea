@@ -15,7 +15,7 @@ from nltk.corpus import stopwords
 import os
 
 
-def main(dataset_path, num_iter, print_flag=True):
+def main(dataset_path, print_flag=True):
     def train_word2vec(df, dataset_path):
         def get_embeddings(inp_data, vocabulary_inv, size_features=100,
                            mode='skipgram',
@@ -304,7 +304,7 @@ def main(dataset_path, num_iter, print_flag=True):
     inv_docfreq = calculate_inv_doc_freq(df, docfreq)
 
     train_word2vec(df, dataset_path)
-    for i in range(num_iter + 1):
+    for i in range(5):
         print("ITERATION: ", i)
         pred_labels = train_classifier(df, labels, label_term_dict, label_to_index, index_to_label, dataset_path)
         label_term_dict, components = expand_seeds(df, label_term_dict, pred_labels, label_to_index, index_to_label,
@@ -317,9 +317,8 @@ def main(dataset_path, num_iter, print_flag=True):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset_path', type=str, default='./data/nyt/')
-    parser.add_argument('--num_iter', type=str, default=5)
     parser.add_argument('--gpu_id', type=str, default="cpu")
     args = parser.parse_args()
     if args.gpu_id != "cpu":
         os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu_id)
-    main(dataset_path=args.dataset_path, num_iter=int(args.num_iter))
+    main(dataset_path=args.dataset_path)
