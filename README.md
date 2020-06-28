@@ -16,12 +16,12 @@
 ### Required inputs
 Each Dataset should contain following files:
 - **DataFrame pickle file**
-  - Example: ```data/nyt/df.pkl```
+  - Example: ```data/nyt/coarse/df.pkl```
     - This dataset should contain two columns named ```sentence```, ```label```
     - ```sentence``` contains text and ```label``` contains its corresponding label.
     - Must be named as ```df.pkl```
 - **Seed Words Json file**
-  - Example: ```data/nyt/seedwords.json```
+  - Example: ```data/nyt/coarse/seedwords.json```
     - This json file contains seed words list for each label.
     - Must be named as ```seedwords.json```
 

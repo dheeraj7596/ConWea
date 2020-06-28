@@ -304,7 +304,7 @@ def main(dataset_path, print_flag=True):
     inv_docfreq = calculate_inv_doc_freq(df, docfreq)
 
     train_word2vec(df, dataset_path)
-    for i in range(5):
+    for i in range(6):
         print("ITERATION: ", i)
         pred_labels = train_classifier(df, labels, label_term_dict, label_to_index, index_to_label, dataset_path)
         label_term_dict, components = expand_seeds(df, label_term_dict, pred_labels, label_to_index, index_to_label,

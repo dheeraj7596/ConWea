@@ -1,0 +1,37 @@
+{
+  "arts": [
+    "music",
+    "film",
+    "album",
+    "movie",
+    "dance"
+  ],
+  "business": [
+    "companies",
+    "euro",
+    "economy",
+    "batteries",
+    "sales"
+  ],
+  "science": [
+    "space",
+    "researchers",
+    "scientists",
+    "research",
+    "science"
+  ],
+  "sports": [
+    "yankees",
+    "cup",
+    "league",
+    "basketball",
+    "golf"
+  ],
+  "politics": [
+    "republicans",
+    "senator",
+    "senate",
+    "democrats",
+    "election"
+  ]
+}
