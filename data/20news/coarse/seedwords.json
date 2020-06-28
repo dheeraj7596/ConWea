@@ -1,0 +1,44 @@
+{
+  "alt": [
+    "atheism",
+    "atheists",
+    "religion",
+    "objective"
+  ],
+  "comp": [
+    "graphics",
+    "windows",
+    "scsi",
+    "mac"
+  ],
+  "misc": [
+    "sale",
+    "offer",
+    "shipping",
+    "forsale"
+  ],
+  "rec": [
+    "car",
+    "bike",
+    "game",
+    "team"
+  ],
+  "sci": [
+    "encryption",
+    "clipper",
+    "key",
+    "chip"
+  ],
+  "talk": [
+    "turkish",
+    "gun",
+    "jews",
+    "armenian"
+  ],
+  "soc": [
+    "church",
+    "jesus",
+    "christ",
+    "christians"
+  ]
+}
