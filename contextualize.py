@@ -6,7 +6,7 @@ from collections import defaultdict
 from statistics import median
 from sklearn.cluster import KMeans
 from flair.data import Sentence
-from flair.embeddings import BertEmbeddings
+from flair.embeddings import TransformerWordEmbeddings
 from nltk import sent_tokenize
 from nltk.corpus import stopwords
 from util import *
@@ -15,7 +15,7 @@ from util import *
 def main(dataset_path, temp_dir):
     def dump_bert_vecs(df, dump_dir):
         print("Getting BERT vectors...")
-        embedding = BertEmbeddings('bert-base-uncased')
+        embedding = TransformerWordEmbeddings('bert-base-uncased')
         word_counter = defaultdict(int)
         stop_words = set(stopwords.words('english'))
         stop_words.add("would")
@@ -126,7 +126,7 @@ def main(dataset_path, temp_dir):
             return max_sim_id
 
         print("Contextualizing the corpus..")
-        embedding = BertEmbeddings('bert-base-uncased')
+        embedding = TransformerWordEmbeddings('bert-base-uncased')
         stop_words = set(stopwords.words('english'))
         stop_words.add('would')
         except_counter = 0
