@@ -1,0 +1,39 @@
+{
+  "comp": [
+    "graphics",
+    "windows",
+    "scsi",
+    "mac"
+  ],
+  "misc": [
+    "sale",
+    "offer",
+    "shipping",
+    "forsale"
+  ],
+  "rec": [
+    "car",
+    "bike",
+    "game",
+    "team"
+  ],
+  "sci": [
+    "encryption",
+    "circuit",
+    "candida",
+    "space"
+  ],
+  "talk": [
+    "turkish",
+    "gun",
+    "stephanopoulos",
+    "armenian"
+  ],
+  "religion": [
+    "church",
+    "jesus",
+    "jehovah",
+    "religion",
+    "atheism"
+  ]
+}
